@@ -16,9 +16,14 @@ h1{
     text-align: center;
 }
 
-circle {
+#sun {
     fill: #ffd500;
     stroke: #fddb35;
+}
+
+#moon {
+    fill: #a4a4a4;
+    stroke: #a9a9a9;
 }
 
 .sky-Box{
