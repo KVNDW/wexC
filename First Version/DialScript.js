@@ -39,10 +39,18 @@ const updateMoonPosition = () => {
 }
 
 const updateSkyColor=()=>{
-    const green = 230 - slider1.value*4;
-    const red= 100-slider1.value*4;
-    const blue = 255-slider1.value*2;
-    const rgbColor = `rgb(${red}, ${green}, ${blue})`;
+    let rgbColor;
+    if (slider1.value <= (slider1.max / 2)) {
+        const green = 230 - slider1.value * 4;
+        const red = 100 - slider1.value * 4;
+        const blue = 255 - slider1.value * 2;
+        rgbColor = `rgb(${red}, ${green}, ${blue})`;
+    } else {
+        const green = 230 - slider1.value * 8;
+        const red = 100 - slider1.value * 8;
+        const blue = 255 - slider1.value * 6;
+        rgbColor = `rgb(${red}, ${green}, ${blue})`;
+    }
 
     sky.setAttribute('fill', rgbColor);
 }
