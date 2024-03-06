@@ -1,6 +1,7 @@
 const slider1 = document.getElementById('slider1');
 const display1 = document.getElementById('display1');
 const sun = document.getElementById('sun');
+const moon = document.getElementById('moon');
 const sky = document.getElementById('sky');
 
 
@@ -8,11 +9,12 @@ const updateValue = () => {
     display1.textContent = slider1.value;
 
     updateSunPosition();
+    updateMoonPosition();
     updateSkyColor();
 }
 
 const updateSunPosition = () => {
-    const angle = (slider1.value / slider1.max) * Math.PI - Math.PI / 2;
+    const angle = ((slider1.value / slider1.max) * 2 * Math.PI - Math.PI * 2) + Math.PI;
     const centerXArch = 200;
     const centerYArch = 160;
     const radiusXArch = 230;
@@ -22,6 +24,18 @@ const updateSunPosition = () => {
 
     sun.setAttribute("cx", xPos);
     sun.setAttribute("cy", yPos);
+}
+
+const updateMoonPosition = () => {
+    const angle = (slider1.value / slider1.max) * 2 * Math.PI - Math.PI * 2;
+    const centerXArch = 200;
+    const centerYArch = 160;
+    const radiusXArch = 230;
+    const radiusYArch = 130;
+    const xPos = centerXArch + radiusXArch * Math.sin(angle);
+    const yPos = centerYArch - radiusYArch * Math.cos(angle);
+
+    moon.setAttribute("transform", `translate(${xPos - moon.getBBox().x - moon.getBBox().width / 2}, ${yPos - moon.getBBox().y - moon.getBBox().height / 2})`);
 }
 
 const updateSkyColor=()=>{
