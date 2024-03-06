@@ -38,13 +38,20 @@ const updateMoonPosition = () => {
     moon.setAttribute("cy", yPos);
 }
 
+//could be better / more logical
 const updateSkyColor=()=>{
     let rgbColor;
-    if ((slider1.value >= 6 && slider1.value <= 17)) {
+    if(slider1.value < 6){
+        const green = 38 + slider1.value * 25  ;
+        const red = 16 + slider1.value * 10 ;
+        const blue = 85 + slider1.value * 28 ;
+        rgbColor = `rgb(${red}, ${green}, ${blue})`;
+    }
+    else if ((slider1.value >= 6 && slider1.value <= 17)) {
         //Day
-        const green = 230 - slider1.value * 4;
-        const red = 100 - slider1.value * 4;
-        const blue = 255 - slider1.value * 2;
+        const green = 220 - slider1.value * 4;
+        const red = 80 - slider1.value * 4;
+        const blue = 255 - slider1.value * 4;
         rgbColor = `rgb(${red}, ${green}, ${blue})`;
     } else {
         //Night
