@@ -8,6 +8,6 @@ const updateValue = () => {
 
 }
 
-
+slider1.value = 10;
 
 slider1.addEventListener("input",updateValue);
