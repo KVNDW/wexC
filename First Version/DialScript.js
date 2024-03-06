@@ -14,9 +14,9 @@ const updateValue = () => {
 }
 
 const updateSunPosition = () => {
-    const angle = (slider1.value / slider1.max) * Math.PI*2 - Math.PI / 2 ;
+    const angle = (((slider1.value ) / slider1.max) * Math.PI*2 - Math.PI / 2) - Math.PI / 2.2 ;
     const centerXArch = 200;
-    const centerYArch = 230;
+    const centerYArch = 220;
     const radiusXArch = 180;
     const radiusYArch = 180;
     const xPos = centerXArch + radiusXArch * Math.sin(angle);
@@ -26,9 +26,9 @@ const updateSunPosition = () => {
     sun.setAttribute("cy", yPos);
 }
 const updateMoonPosition = () => {
-    const angle = ((slider1.value / slider1.max) * Math.PI*2 + Math.PI/2 );
+    const angle = (((slider1.value)/ slider1.max) * Math.PI*2 + Math.PI/2 )- Math.PI / 2.2;
     const centerXArch = 200;
-    const centerYArch = 230;
+    const centerYArch = 220;
     const radiusXArch = 180;
     const radiusYArch = 180;
     const xPos = centerXArch + radiusXArch * Math.sin(angle);
@@ -40,7 +40,7 @@ const updateMoonPosition = () => {
 
 const updateSkyColor=()=>{
     let rgbColor;
-    if (slider1.value <= (slider1.max / 2)) {
+    if ((slider1.value >= slider1.max/4.8) && (slider1.value >= slider1.max/1.5)) {
         const green = 230 - slider1.value * 4;
         const red = 100 - slider1.value * 4;
         const blue = 255 - slider1.value * 2;
@@ -55,7 +55,7 @@ const updateSkyColor=()=>{
     sky.setAttribute('fill', rgbColor);
 }
 
-slider1.value = 0;
+slider1.value = 6;
 
 slider1.addEventListener("input",updateValue);
 
