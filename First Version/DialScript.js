@@ -14,7 +14,7 @@ const updateValue = () => {
 }
 
 const updateSunPosition = () => {
-    const angle = (((slider1.value ) / slider1.max) * Math.PI*2 - Math.PI / 2) - Math.PI / 2.2 ;
+    const angle = (((slider1.value) / slider1.max) * Math.PI*2 - Math.PI / 2) - Math.PI / 2.2 ;
     const centerXArch = 200;
     const centerYArch = 220;
     const radiusXArch = 180;
@@ -40,12 +40,14 @@ const updateMoonPosition = () => {
 
 const updateSkyColor=()=>{
     let rgbColor;
-    if ((slider1.value >= slider1.max/4.8) && (slider1.value >= slider1.max/1.5)) {
+    if ((slider1.value >= 6 && slider1.value <= 17)) {
+        //Day
         const green = 230 - slider1.value * 4;
         const red = 100 - slider1.value * 4;
         const blue = 255 - slider1.value * 2;
         rgbColor = `rgb(${red}, ${green}, ${blue})`;
     } else {
+        //Night
         const green = 230 - slider1.value * 8;
         const red = 100 - slider1.value * 8;
         const blue = 255 - slider1.value * 6;
