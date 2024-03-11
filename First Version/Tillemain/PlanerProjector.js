@@ -8,7 +8,7 @@ const planerProjector = yay => {
 
     const skyBox = document.createElement('div');
     skyBox.className = 'sky-Box'
-    skyBox.id = 'sky-Box';
+
     tile.appendChild(skyBox);
 
     // SVG container within the sky box
@@ -28,8 +28,8 @@ const planerProjector = yay => {
 
     // Sun
     const sun = document.createElementNS( svgs,'circle');
-    sun.setAttribute('cx', '50%'); // Example position
-    sun.setAttribute('cy', '25'); // Example position
+    sun.setAttribute('cx', '50%');
+    sun.setAttribute('cy', '25');
     sun.setAttribute('r', '25');
     sun.setAttribute('stroke', 'black');
     sun.setAttribute('stroke-width', '3');
@@ -38,12 +38,13 @@ const planerProjector = yay => {
 
     // Moon
     const moon = document.createElementNS( svgs,'circle');
-    moon.setAttribute('cx', '75%'); // Example position
+    moon.setAttribute('cx', '45%'); // Example position
     moon.setAttribute('cy', '50'); // Example position
     moon.setAttribute('r', '10');
     moon.setAttribute('stroke', 'black');
     moon.setAttribute('stroke-width', '2');
     moon.setAttribute('fill', 'white');
+    moon.setAttribute('class', 'moon' )
     svgContainer.appendChild(moon);
 
 

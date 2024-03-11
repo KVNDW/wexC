@@ -21,7 +21,6 @@ const updateValues = () => {
         updateSunPosition()
     };
 
-
     const updateSunPosition = () => {
         const angle = (((slider.value) / slider.max) * Math.PI*2 - Math.PI / 2) - Math.PI / 2.2 ;
         const centerXArch = 200;
@@ -34,8 +33,9 @@ const updateValues = () => {
         sun.setAttribute("cx", xPos);
         sun.setAttribute("cy", yPos);
     }
-
 }
+
+
 
 
 plus.addEventListener("click",updateValues);
