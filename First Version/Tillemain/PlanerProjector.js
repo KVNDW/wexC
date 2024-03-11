@@ -1,9 +1,55 @@
 export {planerProjector}
 
-const planerProjector = yay =>{
-
+const planerProjector = yay => {
+    const svgs = 'http://www.w3.org/2000/svg';
     const tile = document.createElement('tile-container');
     tile.className = 'tile-class'
+
+
+    const skyBox = document.createElement('div');
+    skyBox.className = 'sky-Box'
+    skyBox.id = 'sky-Box';
+    tile.appendChild(skyBox);
+
+    // SVG container within the sky box
+    const svgContainer = document.createElementNS( svgs,'svg');
+    svgContainer.setAttribute('height', '100%');
+    svgContainer.setAttribute('width', '100%');
+    skyBox.appendChild(svgContainer);
+
+    // Sky
+    const sky = document.createElementNS( svgs,'rect');
+    sky.setAttribute('x', '0');
+    sky.setAttribute('y', '0');
+    sky.setAttribute('width', '100%');
+    sky.setAttribute('height', '100%');
+    sky.setAttribute('fill', 'blue');
+    svgContainer.appendChild(sky);
+
+    // Sun
+    const sun = document.createElementNS( svgs,'circle');
+    sun.setAttribute('cx', '50%'); // Example position
+    sun.setAttribute('cy', '25'); // Example position
+    sun.setAttribute('r', '25');
+    sun.setAttribute('stroke', 'black');
+    sun.setAttribute('stroke-width', '3');
+    sun.setAttribute('class', 'sun');
+    svgContainer.appendChild(sun);
+
+    // Moon
+    const moon = document.createElementNS( svgs,'circle');
+    moon.setAttribute('cx', '75%'); // Example position
+    moon.setAttribute('cy', '50'); // Example position
+    moon.setAttribute('r', '10');
+    moon.setAttribute('stroke', 'black');
+    moon.setAttribute('stroke-width', '2');
+    moon.setAttribute('fill', 'white');
+    svgContainer.appendChild(moon);
+
+
+
+
+
 
     const title = document.createElement('h1');
     title.textContent = 'Time Dial';
