@@ -50,13 +50,17 @@ const updateSkyColor=()=>{
     let color;
 
     if (val < maxVal * 0.25) { // Night to Morning
-        color = interpolateColor(colors.night, colors.morning, val / (maxVal * 0.25));
+        color = interpolateColor(colors.night, colors.morning, factor = val / (maxVal * 0.25));
+        //console.log("Night to Morning: " + color.b.toString() + ":" +color.g.toString() + ":" + color.r.toString() + " factor: " + "(" + val + " / (" + maxVal + "*0.25) = " + factor)
     } else if (val < maxVal * 0.5) { // Morning to Midday
         color = interpolateColor(colors.morning, colors.midday, (val - maxVal * 0.25) / (maxVal * 0.25));
+        //console.log("Morning to Midday: " + color.b.toString() + ":" +color.g.toString() + ":" + color.r.toString() + " factor: " + "(" + val + "-" + maxVal + "* 0.25) / (" + maxVal + "*0.25) = " + factor)
     } else if (val < maxVal * 0.75) { // Midday to Evening
         color = interpolateColor(colors.midday, colors.evening, (val - maxVal * 0.5) / (maxVal * 0.25));
+        //console.log("Midday to Evening: " + color.b.toString() + ":" +color.g.toString() + ":" + color.r.toString() + " factor: " + "(" + val + "-" + maxVal + "* 0.5) / (" + maxVal + "*0.25) = " + factor)
     } else { // Evening to Late Evening
-        color = interpolateColor(colors.evening, colors.night, (val - maxVal * 0.75) / (maxVal * 0.25));
+        color = interpolateColor(colors.evening, colors.night, ((val - maxVal * 0.75) / (maxVal * 0.25)) || 0.04 ); //ensure minimum value 0 to make a color change happen
+        //console.log("Evening to Late Evening: " + color.b.toString() + ":" +color.g.toString() + ":" + color.r.toString() + " factor: " + "(" + val + "-" + maxVal + "* 0.75) / (" + maxVal + "*0.25) = " + factor)
     }
 
     const rgbColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
