@@ -1,13 +1,10 @@
 const slider1 = document.getElementById('slider1');
-const display1 = document.getElementById('display1');
 const sun = document.getElementById('sun');
 const moon = document.getElementById('moon');
 const sky = document.getElementById('sky');
 
 
 const updateValue = () => {
-    display1.textContent = slider1.value;
-
     updateSunPosition();
     updateMoonPosition();
     updateSkyColor();
@@ -39,15 +36,41 @@ const updateMoonPosition = () => {
 }
 
 const updateSkyColor=()=>{
-    const green = 230 - slider1.value*4;
-    const red= 100-slider1.value*4;
-    const blue = 255-slider1.value*2;
-    const rgbColor = `rgb(${red}, ${green}, ${blue})`;
+    const colors = {
+        night: {r: 0, g: 0, b: 139},
+        morning: {r: 135, g: 206, b: 250},
+        midday: {r: 135, g: 206, b: 235},
+        evening: {r: 135, g: 206, b: 250},
+    };
 
+    // Map the slider value to a specific time of day
+    const maxVal = slider1.max;
+    const val = slider1.value;
+    let color;
+
+    if (val < maxVal * 0.25) { // Night to Morning
+        color = interpolateColor(colors.night, colors.morning, val / (maxVal * 0.25));
+    } else if (val < maxVal * 0.5) { // Morning to Midday
+        color = interpolateColor(colors.morning, colors.midday, (val - maxVal * 0.25) / (maxVal * 0.25));
+    } else if (val < maxVal * 0.75) { // Midday to Evening
+        color = interpolateColor(colors.midday, colors.evening, (val - maxVal * 0.5) / (maxVal * 0.25));
+    } else { // Evening to Late Evening
+        color = interpolateColor(colors.evening, colors.night, (val - maxVal * 0.75) / (maxVal * 0.25));
+    }
+
+    const rgbColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
     sky.setAttribute('fill', rgbColor);
+};
+
+function interpolateColor(color1, color2, factor) {
+    return {
+        r: Math.round(color1.r + (color2.r - color1.r) * factor),
+        g: Math.round(color1.g + (color2.g - color1.g) * factor),
+        b: Math.round(color1.b + (color2.b - color1.b) * factor)
+    };
 }
 
-slider1.value = 0;
+slider1.value = 8;
 
 slider1.addEventListener("input",updateValue);
 
