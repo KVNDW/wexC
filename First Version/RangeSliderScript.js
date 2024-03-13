@@ -1,3 +1,16 @@
+const fromSlider = document.querySelector('#slider1');
+const toSlider = document.querySelector('#slider2');
+const fromInput = document.querySelector('#input1');
+const toInput = document.querySelector('#input2');
+fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+setToggleAccessible(toSlider);
+
+fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
+toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
+fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
+toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
+
+
 function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
     const [from, to] = getParsed(fromInput, toInput);
     fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
@@ -73,15 +86,3 @@ function setToggleAccessible(currentTarget) {
         toSlider.style.zIndex = 0;
     }
 }
-
-const fromSlider = document.querySelector('#slider1');
-const toSlider = document.querySelector('#slider2');
-const fromInput = document.querySelector('#input1');
-const toInput = document.querySelector('#input2');
-fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-setToggleAccessible(toSlider);
-
-fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
-toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
-fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
-toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
