@@ -5,13 +5,11 @@ const planerProjector = yay => {
     const tile = document.createElement('tile-container');
     tile.className = 'tile-class'
 
-
     const skyBox = document.createElement('div');
     skyBox.className = 'sky-Box'
-
     tile.appendChild(skyBox);
 
-    // SVG container within the sky box
+    // SVG
     const svgContainer = document.createElementNS( svgs,'svg');
     svgContainer.setAttribute('height', '100%');
     svgContainer.setAttribute('width', '100%');
@@ -38,19 +36,14 @@ const planerProjector = yay => {
 
     // Moon
     const moon = document.createElementNS( svgs,'circle');
-    moon.setAttribute('cx', '45%'); // Example position
-    moon.setAttribute('cy', '50'); // Example position
+    moon.setAttribute('cx', '45%');
+    moon.setAttribute('cy', '50');
     moon.setAttribute('r', '10');
     moon.setAttribute('stroke', 'black');
     moon.setAttribute('stroke-width', '2');
     moon.setAttribute('fill', 'white');
     moon.setAttribute('class', 'moon' )
     svgContainer.appendChild(moon);
-
-
-
-
-
 
     const title = document.createElement('h1');
     title.textContent = 'Time Dial';
@@ -73,7 +66,5 @@ const planerProjector = yay => {
     display.textContent = '8';
     tile.appendChild(display);
 
-
     return tile;
-
 }

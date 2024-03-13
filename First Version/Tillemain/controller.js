@@ -11,10 +11,12 @@ const updateValues = () => {
     const slider = planerComponent.querySelector('.slider1');
     const display = planerComponent.querySelector('.display1');
     const sun = planerComponent.querySelector('.sun');
+    const moon = planerComponent.querySelector('.moon');
 
     slider.oninput = () => {
         display.textContent = slider.value;
         updateSunPosition()
+        updateMoonPosition()
     };
 
     const updateSunPosition = () => {
@@ -28,6 +30,19 @@ const updateValues = () => {
 
         sun.setAttribute("cx", xPos);
         sun.setAttribute("cy", yPos);
+    }
+
+    const updateMoonPosition = () => {
+        const angle = (((slider.value)/ slider.max) * Math.PI*2 + Math.PI/2 )- Math.PI / 2.2;
+        const centerXArch = 200;
+        const centerYArch = 220;
+        const radiusXArch = 180;
+        const radiusYArch = 180;
+        const xPos = centerXArch + radiusXArch * Math.sin(angle);
+        const yPos = centerYArch - radiusYArch * Math.cos(angle);
+
+        moon.setAttribute("cx", xPos);
+        moon.setAttribute("cy", yPos);
     }
 }
 
