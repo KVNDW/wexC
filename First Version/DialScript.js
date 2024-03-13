@@ -12,11 +12,11 @@ const updateValue = () => {
 }
 
 const updateSunPosition = () => {
-    const angle = ((slider1.value / slider1.max) * 2 * Math.PI - Math.PI * 2) + Math.PI;
+    const angle = (((slider1.value) / slider1.max) * Math.PI*2 - Math.PI / 2) - Math.PI / 2.2 ;
     const centerXArch = 200;
-    const centerYArch = 160;
-    const radiusXArch = 230;
-    const radiusYArch = 130;
+    const centerYArch = 220;
+    const radiusXArch = 180;
+    const radiusYArch = 180;
     const xPos = centerXArch + radiusXArch * Math.sin(angle);
     const yPos = centerYArch - radiusYArch * Math.cos(angle);
 
@@ -25,11 +25,11 @@ const updateSunPosition = () => {
 }
 
 const updateMoonPosition = () => {
-    const angle = (slider1.value / slider1.max) * 2 * Math.PI - Math.PI * 2;
+    const angle = (((slider1.value)/ slider1.max) * Math.PI*2 + Math.PI/2 )- Math.PI / 2.2;
     const centerXArch = 200;
-    const centerYArch = 160;
-    const radiusXArch = 230;
-    const radiusYArch = 130;
+    const centerYArch = 220;
+    const radiusXArch = 180;
+    const radiusYArch = 180;
     const xPos = centerXArch + radiusXArch * Math.sin(angle);
     const yPos = centerYArch - radiusYArch * Math.cos(angle);
 
