@@ -23,7 +23,19 @@ circle {
 
 .sky-Box{
     background-color: skyblue;
+    position: relative;
     width: 400px;
     height: 200px;
+}
 
+.floor-Box{
+    background-color: #0c5409;
+    position: relative;
+    width: 400px;
+    height: 10px;
+}
+#sheep-container{
+    position: absolute;
+    right: 0;
+    bottom: 5px;
 }
