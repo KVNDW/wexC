@@ -1,4 +1,5 @@
 const slider1 = document.getElementById('slider1');
+const input1 = document.getElementById('input1');
 const sun = document.getElementById('sun');
 const moon = document.getElementById('moon');
 const sky = document.getElementById('sky');
@@ -70,8 +71,7 @@ function interpolateColor(color1, color2, factor) {
     };
 }
 
-slider1.value = 8;
-
 slider1.addEventListener("input",updateValue);
+input1.addEventListener("input",updateValue);
 
 updateValue();
