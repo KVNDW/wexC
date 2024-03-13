@@ -36,6 +36,6 @@ circle {
 }
 #sheep-container{
     position: absolute;
-    right: 0;
+    right: 10px;
     bottom: 5px;
 }
