@@ -1,10 +1,7 @@
 import { planerProjector } from './PlanerProjector.js';
 
-
 const plus = document.getElementById('plus-button');
 const planerContainer = document.getElementById('planer-container');
-
-
 
 const updateValues = () => {
 
@@ -14,7 +11,6 @@ const updateValues = () => {
     const slider = planerComponent.querySelector('.slider1');
     const display = planerComponent.querySelector('.display1');
     const sun = planerComponent.querySelector('.sun');
-
 
     slider.oninput = () => {
         display.textContent = slider.value;
@@ -34,8 +30,5 @@ const updateValues = () => {
         sun.setAttribute("cy", yPos);
     }
 }
-
-
-
 
 plus.addEventListener("click",updateValues);
