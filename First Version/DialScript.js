@@ -87,6 +87,12 @@ input1.addEventListener("input",updateValue);
 sun.addEventListener('mousedown', (e) => {
     isDragging = true;
     e.preventDefault();
+
+    const animations = document.querySelectorAll('[data-animation]');
+    animations.forEach(animation => {
+        const running = animation.style.animationPlayState || 'running';
+        animation.style.animationPlayState = running === 'running' ? 'paused' : 'paused';
+    })
 });
 
 document.addEventListener('mousemove', (e) => {
