@@ -3,6 +3,10 @@ const sun = document.getElementById('sun');
 const moon = document.getElementById('moon');
 const sky = document.getElementById('sky');
 let isDragging = false;
+const centerXArch = 200;
+const centerYArch = 220;
+const radiusXArch = 180;
+const radiusYArch = 180;
 
 const updateValue = () => {
     updateSunPosition();
@@ -22,10 +26,6 @@ const updateMouth = ()=> {
 
 const updateSunPosition = () => {
     const angle = (((fromSlider.value) / fromSlider.max) * Math.PI*2 - Math.PI / 2) - Math.PI / 2.2 ;
-    const centerXArch = 200;
-    const centerYArch = 220;
-    const radiusXArch = 180;
-    const radiusYArch = 180;
     const xPos = centerXArch + radiusXArch * Math.sin(angle);
     const yPos = centerYArch - radiusYArch * Math.cos(angle);
 
@@ -35,10 +35,6 @@ const updateSunPosition = () => {
 
 const updateMoonPosition = () => {
     const angle = (((fromSlider.value)/ fromSlider.max) * Math.PI*2 + Math.PI/2 )- Math.PI / 2.2;
-    const centerXArch = 200;
-    const centerYArch = 220;
-    const radiusXArch = 180;
-    const radiusYArch = 180;
     const xPos = centerXArch + radiusXArch * Math.sin(angle);
     const yPos = centerYArch - radiusYArch * Math.cos(angle);
 
@@ -95,10 +91,11 @@ sun.addEventListener('mousedown', (e) => {
 
 document.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-    const sliderRange = fromSlider.max;
-    const sliderRect = fromSlider.getBoundingClientRect();
-    const clickX = e.clientX - sliderRect.left;
-    const sliderValue = (clickX / sliderRect.width) * sliderRange;
+    const mouseX = e.clientX - sky.getBoundingClientRect().left - centerXArch;
+    const mouseY = e.clientY - sky.getBoundingClientRect().top - centerYArch;
+    let angle = Math.atan2(mouseY, mouseX) + Math.PI / 2.2 + Math.PI;
+    if (angle < 0) angle += 2 * Math.PI;
+    const sliderValue = angle / (2 * Math.PI) * fromSlider.max;
     if (sliderValue >= fromSlider.min && sliderValue <= fromSlider.max) {
         console.log(parseInt(sliderValue.toString()) + ">=" + toSlider.value)
         if (parseInt(sliderValue.toString()) <= toSlider.value) {
