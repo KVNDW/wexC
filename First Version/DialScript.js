@@ -2,6 +2,7 @@ const input1 = document.getElementById('input1');
 const sun = document.getElementById('sun');
 const moon = document.getElementById('moon');
 const sky = document.getElementById('sky');
+let isDragging = false;
 
 const updateValue = () => {
     updateSunPosition();
@@ -86,5 +87,30 @@ function interpolateColor(color1, color2, factor) {
 fromSlider.addEventListener("input",updateValue);
 toSlider.addEventListener("input",updateValue);
 input1.addEventListener("input",updateValue);
+
+sun.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    e.preventDefault();
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const sliderRange = fromSlider.max;
+    const sliderRect = fromSlider.getBoundingClientRect();
+    const clickX = e.clientX - sliderRect.left;
+    const sliderValue = (clickX / sliderRect.width) * sliderRange;
+    if (sliderValue >= fromSlider.min && sliderValue <= fromSlider.max) {
+        console.log(parseInt(sliderValue.toString()) + ">=" + toSlider.value)
+        if (parseInt(sliderValue.toString()) <= toSlider.value) {
+            fromSlider.value = parseInt(sliderValue.toString());
+            fromInput.value = parseInt(sliderValue.toString());
+            updateValue();
+        }
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+});
 
 updateValue();
