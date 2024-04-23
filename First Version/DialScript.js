@@ -103,7 +103,7 @@ document.addEventListener('mousemove', (e) => {
     if (angle < 0) angle += 2 * Math.PI;
     const sliderValue = angle / (2 * Math.PI) * fromSlider.max;
     if (sliderValue >= fromSlider.min && sliderValue <= fromSlider.max) {
-        console.log(parseInt(sliderValue.toString()) + ">=" + toSlider.value)
+        fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', toSlider);
         if (parseInt(sliderValue.toString()) <= toSlider.value) {
             fromSlider.value = parseInt(sliderValue.toString());
             fromInput.value = parseInt(sliderValue.toString());
